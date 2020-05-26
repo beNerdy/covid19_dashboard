@@ -9,7 +9,7 @@ class NavbarComponent extends Component {
                     <Navbar.Brand href="#home">
                     <img
                         alt=""
-                        src="https://raw.githubusercontent.com/beNerdy/covid19_dashboard/master/src/corona.png"
+                        src="https://raw.githubusercontent.com/beNerdy/covid19_dashboard/master/src/coronavirus.svg"
                         width="50"
                         height="30"
                         className="d-inline-block align-top"
