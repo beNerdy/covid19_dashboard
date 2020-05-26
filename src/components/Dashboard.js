@@ -37,12 +37,6 @@ class Dashboard extends Component{
         return (
          <div>
              <NavbarComponent></NavbarComponent>
-             <img
-                        alt=""
-                        src="../corona.png"
-                        width="30"
-                        height="30"
-                    />
               <h2> {name}</h2>
         <Button variant="primary" onClick={()=>this.subscribe()}>Subscribe {this.state.subscribers}</Button>
          </div>
