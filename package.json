@@ -1,6 +1,10 @@
 {
   "name": "covid19_dashboard",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.5.0",
+    "npm":"5.7.1"
+  },
   "private": true,
   "dependencies": {
     "cors": "^2.8.5",
