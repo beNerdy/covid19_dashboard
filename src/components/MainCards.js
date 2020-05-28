@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-import {Line} from 'react-chartjs-2';
 import {BsArrowUp} from 'react-icons/bs';
 import {BsArrowDown} from 'react-icons/bs';
 import PieData from './PieData';
