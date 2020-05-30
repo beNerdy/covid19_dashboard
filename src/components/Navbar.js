@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-
 const options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"];
 
 class NavbarComponent extends Component {
@@ -43,6 +42,7 @@ class NavbarComponent extends Component {
                     </DropdownButton>
                     
                 </Navbar>
+                
             </div>
         )
     }

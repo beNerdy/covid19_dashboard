@@ -16,10 +16,7 @@ class TableData extends Component{
             this.setState({
                 payload:Response.data.data
             })
-            var date = new Date();
-            var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-            var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-            firstDay = Date.parse(firstDay)/1000;
+        
             
         })
     }

@@ -13,6 +13,7 @@ class MainCards extends Component{
     constructor(props){
         super(props);
         this.state={
+            progress:false,
             covidData:[],
             chartData:[],
             confirmedCase:0,
@@ -33,10 +34,11 @@ class MainCards extends Component{
             highestDeathCaseByCountryFigure:0
         }
     }
- 
+    
     
     componentDidMount(){
         axios.get('https://2019ncov-api.now.sh/api/cases').then(Response=>{
+            this.props.progress(this.state.progress)
             var key = "Country/Region";
             var count1 = 0;
             var count2 = 0;
@@ -69,7 +71,7 @@ class MainCards extends Component{
                         count4=(res.confirmed-res.recovered);
                     }
                 })
-               
+                this.props.progress(100)
             })
             this.setState({
                 covidData:Response.data,
@@ -81,7 +83,9 @@ class MainCards extends Component{
                 recoveryRate:((Response.data.total_recovered/Response.data.total_confirmed)*100).toFixed(2)+"%",
                 totalRecovered:Response.data.total_recovered.toLocaleString()
             });
+            this.props.progress(true);
         })
+        
 }
     render(){
        const {covidData} = this.state;
@@ -90,14 +94,16 @@ class MainCards extends Component{
        const styleBg = {backgroundColor:'rgb(14, 28, 47)'}
         return(
             <div>
+                
                <br></br>
+               
                <Container fluid>
                 <Row>
                     <Col>
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Confirmed Cases</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowUp  style={styleRed}></BsArrowUp>
                             {this.state.totalConfirmedCases}
                             </Card.Text>
@@ -109,7 +115,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Active Cases</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowUp  style={styleRed}></BsArrowUp>
                             {this.state.activeCase}
                             </Card.Text>
@@ -121,7 +127,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Death</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowUp  style={styleRed}></BsArrowUp>
                             {this.state.totalDeath}
                             </Card.Text>
@@ -134,7 +140,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Critical Cases</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowDown  style={styleGreen}></BsArrowDown>
                             {this.state.criticalCase}
                             </Card.Text>
@@ -146,7 +152,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Recovered</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowUp  style={styleGreen}></BsArrowUp>
                             {this.state.totalRecovered}
                             </Card.Text>
@@ -158,7 +164,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Death Rate</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowDown  style={styleGreen}></BsArrowDown>
                             {this.state.deathRate}
                             </Card.Text>
@@ -170,7 +176,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Recovery Rate</Card.Title>
-                            <Card.Text as="h2">
+                            <Card.Text >
                             <BsArrowUp  style={styleGreen}></BsArrowUp>
                             {this.state.recoveryRate}
                             </Card.Text>
@@ -185,7 +191,7 @@ class MainCards extends Component{
                     <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Country with Higest Confirmed Cases</Card.Title>
-                            <h2 as="h3" style={styleRed}>{this.state.highestConfirmedCaseByCountryName}</h2>
+                            <h2  style={styleRed}>{this.state.highestConfirmedCaseByCountryName}</h2>
                             <h4>{this.state.highestConfirmedCaseByCountryFigure.toLocaleString()}</h4>
                             </Card.Body>
                         </Card>
@@ -193,7 +199,7 @@ class MainCards extends Component{
                         <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Country with Higest Deaths</Card.Title>
-                                <h2 as="h3">{this.state.highestDeathCaseByCountryName}</h2>
+                                <h2 >{this.state.highestDeathCaseByCountryName}</h2>
                                 <h4>{this.state.highestDeathCaseByCountryFigure.toLocaleString()}</h4>
                             </Card.Body>
                         </Card>
@@ -201,7 +207,7 @@ class MainCards extends Component{
                         <Card style={styleBg} text="white">
                             <Card.Body>
                             <Card.Title >Country with Higest Recovered Cases</Card.Title>
-                                <h2 as="h3" style={styleGreen}>{this.state.highestRecoveredCaseByCountryName}</h2>
+                                <h2  style={styleGreen}>{this.state.highestRecoveredCaseByCountryName}</h2>
                                 <h4>{this.state.highestRecoveredCaseByCountryFigure.toLocaleString()}</h4>
                             </Card.Body>
                         </Card>
@@ -210,7 +216,7 @@ class MainCards extends Component{
                             <Card.Body>
                             <Card.Title >Country with Higest Critical Cases</Card.Title>
                            
-                                <h2 as="h3">{this.state.highestCriticalCaseByCountryName}</h2>
+                                <h2 >{this.state.highestCriticalCaseByCountryName}</h2>
                                 <h4>{this.state.highestCriticalCaseByCountryFigure.toLocaleString()}</h4>
                                 
                             </Card.Body>
